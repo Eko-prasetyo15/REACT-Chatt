@@ -41,9 +41,9 @@ export default class chattFrom extends Component {
                                     onChange={this.handleChange} value={this.state.content} />
                             </div>
                         </div>
-                        <div className="speech-bubble">
+                        <div className="speech">
                             <div className="input-group">
-                                <button type="submit" className="btn btn-primary btn-circle"><i className="fas fa-comment fa-2x"></i></button>
+                                <button type="submit" className="btn btn-primary btn-circle"><i className="fas fa-paper-plan"></i></button>
                             </div>
                         </div>
                     </li>

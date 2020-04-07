@@ -3,7 +3,7 @@ import React from 'react';
 export default function chattItem(props) {
     const timestamp = props.chatt.id
     return (
-        <div className="col-md-12 col-lg-6">
+        <div className="col-md-12 col-lg-12">
             <div className="panel">
 
                 <div className="">
@@ -19,7 +19,9 @@ export default function chattItem(props) {
                                             <i className="fa fa-clock-o fa-fw"></i>{Intl.DateTimeFormat('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' }).format(timestamp)}
                                         </p>
                                         {props.chatt.name} <br></br> {props.chatt.content}
-                                        <button onClick={props.chatt.sent ? props.delete : props.resend}>{props.chatt.sent ? 'x' : 'kirim ulang'}</button>
+                                        <button className="btn btn-link py-2 px-2" onClick={props.chatt.sent ? props.delete : props.resend}>
+                                            {props.chatt.sent ? <i className="text-dark fa fa-trash"></i> : <i className="text-dark fa fa-repeat"></i>}
+                                        </button>
                                     </div>
                                 </div>
                             </li>
