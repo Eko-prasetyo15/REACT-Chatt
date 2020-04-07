@@ -23,7 +23,8 @@ export default class ChattBox extends Component {
         request.get('chatts')
             .then((response) => {
                 console.log(response)
-                this.setState({ data: response.data.map(item => {
+                this.setState({
+                    data: response.data.map(item => {
                         item.sent = true;
                         return item
                     })
@@ -93,26 +94,18 @@ export default class ChattBox extends Component {
     render() {
         return (
             <div>
-                <h1 className="text-center"> React Chatt Aplication</h1>
-                <div className="card text-center w-50">
-                    <div className="card-body">
-                        <div className="container mt-5 mb-5">
-                            <div className="row">
-                                <div className="col-md-6 offset-md-3">
-                                    <ul className="timeline">
-                                        <li>
-                                            <ChattList data={this.state.data} delete={this.deletechatt} resend ={this.resendchatt}/>
-
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <ChattForm addchatt={this.addchatt} />
-
+                <div>
+                    <h1 className="text-center"> React Chatt Aplication</h1>
+                    <div className="text-center flex-col-c p-t-100">
+                        <span className="txt1 p-b-25" style={{color: '#fff' }}/>
+                            Made by @Abushanum
                     </div>
+                    <hr></hr>
                 </div>
+                <div className="cardah">
+                    <ChattList data={this.state.data} delete={this.deletechatt} resend={this.resendchatt} />
+                </div>
+                <ChattForm addchatt={this.addchatt} />
             </div>
         )
     }
