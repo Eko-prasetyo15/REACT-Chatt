@@ -2,12 +2,15 @@ import React from 'react';
 import ChattItem from './chattItem'
 
 export default function chattList(props) {
-    const listItem = props.data.map((item, index) =>
-        <ChattItem key={index} chatt={item} deletechatt={() => props.delete(item.id)} />
-    );
-    return (
+    console.log(props.data,'jjjjjjjjjjjjjjjjjjjjj')
+    const listItems = props.data.map((item, index) =>
+    <ChattItem key={index} chatt={item} delete={() => props.delete(item.id)}  resend={() => props.resend(item)} />
+);
 
-    <ol>{listItem}</ol>
-    )
+return (
+    <ol>
+        {listItems}
+    </ol>
+            )
 }
 

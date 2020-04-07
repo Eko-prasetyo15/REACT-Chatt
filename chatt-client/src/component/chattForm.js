@@ -18,7 +18,7 @@ export default class chattFrom extends Component {
 
     handleSubmit(event) {
         const id = Date.now();
-        this.props.addchatt({id, name: this.state.value, content: this.state.content })
+        this.props.addchatt({id, name: this.state.value, content: this.state.content, sent: true })
         this.setState({ value: '', content: '' })
         event.preventDefault();
     }
@@ -26,17 +26,17 @@ export default class chattFrom extends Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <div class="container">
-                    <label class="badge badge-primary">
+                <div className="container">
+                    <label className="badge badge-primary">
                         Name :
                     </label>
                     <br></br>
             <input type="text" name="value" value={this.state.value} onChange={this.handleChange} />
             <br></br>
-            <input class ="form-control form-control-lg" type="text" name="content" value={this.state.content} onChange={this.handleChange} />
+            <input className ="form-control form-control-lg" type="text" name="content" value={this.state.content} onChange={this.handleChange} />
                 </div>
             
-                <input class= "btn btn-primary" type="submit" value="Submit" />
+                <input className= "btn btn-primary" type="submit" value="Submit" />
             </form>
         );
     }

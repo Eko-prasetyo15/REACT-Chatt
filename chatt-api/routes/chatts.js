@@ -12,7 +12,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
-  chatt.create({ name: req.body.name, content: req.body.content }, (err, chatt) => {
+  chatt.create({id : req.body.id, name: req.body.name, content: req.body.content }, (err, chatt) => {
     if (err) res.status(500).json({ err })
     res.status(200).json(chatt)
   }
@@ -20,19 +20,18 @@ router.post('/', function (req, res, next) {
 });
 
 router.put('/:id', function (req, res, next) {
-  chatt.findByIdAndUpdate(req.params.id,{ name: req.body.name, content: req.body.content }, (err, chatt) => {
+  chatt.findByIdAndUpdate({id : parseInt(req.params.id)},{name: req.body.name, content: req.body.content }, (err, chatt) => {
     if (err) res.status(500).json({ err })
     res.status(200).json(chatt)
   }
   )
 });
 
-router.delete('/:id', function (req, res, next) {
-  chatt.findByIdAndDelete(req.params.id, { name: req.body.name, content: req.body.content }, (err, chatt) => {
-    if (err) res.status(500).json({ err })
+router.delete('/:id', function(req, res, next) {
+  chatt.findOneAndRemove({id: parseInt(req.params.id)}, (err, chatt)=>{
+    if(err) return res.status(500).json({err})
     res.status(200).json(chatt)
-  }
-  )
+  })
 });
 
 

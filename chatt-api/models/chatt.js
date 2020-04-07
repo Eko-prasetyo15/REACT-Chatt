@@ -1,9 +1,9 @@
 var mongoose = require('mongoose');
 
 var chattSchema = new mongoose.Schema({
-    Id: Number,
+    id: Number,
     name: String,
-    content: String,
+    content: String
 }, {
     timestamps: true
 });
