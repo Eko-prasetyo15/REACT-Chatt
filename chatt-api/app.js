@@ -6,10 +6,11 @@ var mongoose = require('mongoose');
 var cors = require('cors')
 var debug = require("debug")("react-chat:server");
 var http = require("http");
-var indexRouter = require('./routes/index');
 var chattsRouter = require('./routes/chatts');
 
 var app = express();
+var server = http.createServer(app);
+var io = require("socket.io")(server);
 var port = normalizePort(process.env.PORT || "3001");
 app.set("port", port);
 
@@ -30,10 +31,26 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(cors());
 
-app.use('/', indexRouter);
 app.use('/api/chatts', chattsRouter);
 
+io.on("connection", function (socket) {
+    console.log('socket connected')
+    socket.on("add chat", () => {
+        socket.broadcast.emit("load chat");
+    });
+
+    socket.on("delete chat", (id) => {
+        console.log(id)
+        socket.broadcast.emit("delete chat", id);
+    });
+});
+
+server.listen(port);
+server.on("error", onError);
+server.on("listening", onListening);
+
 app.set("port", port);
+
 function normalizePort(val) {
     var port = parseInt(val, 10);
 
